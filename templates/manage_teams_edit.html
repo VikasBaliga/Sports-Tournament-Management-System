@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Team</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Edit Team</h2>
+
+    <!-- Flash messages for success or error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert alert-{{ messages[0][0] }}">
+                {{ messages[0][1] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Form for editing a team -->
+    <form method="POST" action="{{ url_for('admin.manage_teams_edit') }}">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>Team Details</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="team_id">Team ID</label>
+                    <input type="text" class="form-control" id="team_id" name="team_id" value="{{ team['team_id'] }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="team_name">Team Name</label>
+                    <input type="text" class="form-control" id="team_name" name="team_name" value="{{ team['team_name'] }}" placeholder="Enter team name" required>
+                </div>
+                <div class="form-group">
+                    <label for="home_ground">Home Ground</label>
+                    <input type="text" class="form-control" id="home_ground" name="home_ground" value="{{ team['home_ground'] }}" placeholder="Enter home ground" required>
+                </div>
+                <div class="form-group">
+                    <label for="team_captain">Team Captain</label>
+                    <input type="text" class="form-control" id="team_captain" name="team_captain" value="{{ team['team_captain'] }}" placeholder="Enter team captain name" required>
+                </div>
+                <div class="form-group">
+                    <label for="coach_id">Coach ID</label>
+                    <input type="text" class="form-control" id="coach_id" name="coach_id" value="{{ team['coach_id'] }}" placeholder="Enter coach ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="game_name">Game Name</label>
+                    <input type="text" class="form-control" id="game_name" name="game_name" value="{{ team['game_name'] }}" placeholder="Enter game name" required>
+                </div>
+                <div class="form-group">
+                    <label for="manager">Manager</label>
+                    <input type="text" class="form-control" id="manager" name="manager" value="{{ team['manager'] }}" placeholder="Enter manager name" required>
+                </div>
+                <div class="form-group">
+                    <label for="team_merch">Team Merch</label>
+                    <input type="text" class="form-control" id="team_merch" name="team_merch" value="{{ team['team_merch'] }}" placeholder="Enter team merchandise details" required>
+                </div>
+                <div class="form-group">
+                    <label for="tournament_id">Tournament ID</label>
+                    <input type="text" class="form-control" id="tournament_id" name="tournament_id" value="{{ team['tournament_id'] }}" placeholder="Enter tournament ID" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary btn-block" name="edit">Update Team</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Game Score</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Edit Game Score</h2>
+
+    <!-- Flash messages for success or error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert alert-{{ messages[0][0] }}">
+                {{ messages[0][1] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Form for editing the game score -->
+    <form method="POST" action="{{ url_for('admin.manage_scores_edit') }}">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>Game Score Details</h4>
+            </div>
+            <div class="card-body">
+                <!-- Match ID (Editable) -->
+                <div class="form-group">
+                    <label for="match_id">Match ID</label>
+                    <input type="text" class="form-control" id="match_id" name="match_id" value="{{ score[0] if score else '' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="team1_score">Team 1 Score</label>
+                    <input type="number" class="form-control" id="team1_score" name="team1_score" value="{{ score[1] if score else '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="team2_score">Team 2 Score</label>
+                    <input type="number" class="form-control" id="team2_score" name="team2_score" value="{{ score[2] if score else '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="game_name">Game Name</label>
+                    <input type="text" class="form-control" id="game_name" name="game_name" value="{{ score[3] if score else '' }}" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary btn-block">Update Game Score</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

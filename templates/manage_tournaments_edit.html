@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Tournament</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Edit Tournament</h2>
+
+    <!-- Flash messages for success or error -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert alert-{{ messages[0][0] }}">
+                {{ messages[0][1] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Form for editing a tournament -->
+    <form method="POST" action="{{ url_for('admin.manage_tournaments_edit') }}">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h4>Tournament Details</h4>
+            </div>
+            <div class="card-body">
+                <!-- Tournament ID Input Field -->
+                <div class="form-group">
+                    <label for="tournament_id">Tournament ID</label>
+                    <input type="number" class="form-control" id="tournament_id" name="tournament_id" placeholder="Enter Tournament ID" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tournament_name">Tournament Name</label>
+                    <input type="text" class="form-control" id="tournament_name" name="tournament_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="start_date">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="end_date">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary btn-block">Update Tournament</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

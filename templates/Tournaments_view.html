@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournaments</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Tournament Details</h1>
+        
+        <!-- Form to Input Tournament ID -->
+        <form method="POST" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="tournament_id" class="form-control" placeholder="Enter Tournament ID" required>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <!-- Display Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="alert alert-danger">
+            {% for category, message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Table to Display Tournament Details -->
+        <table class="table table-bordered table-striped mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Tournament ID</th>
+                    <th>Tournament Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tournament in tournaments %}
+                <tr>
+                    <td>{{ tournament[0] }}</td>
+                    <td>
+                        <a href="{{ url_for('user.teams_view', tournament_id=tournament[0]) }}">{{ tournament[1] }}</a>
+                    </td>
+                    <td>{{ tournament[2] }}</td>
+                    <td>{{ tournament[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

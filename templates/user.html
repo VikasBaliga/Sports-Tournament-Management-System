@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='Webpage.css') }}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">Undecided project name <span>Best Source for Sports Tracking</span></div>
+    <nav>
+      <ul>
+        <li><a href="{{url_for('user')}}">Home</a></li>
+        <li><a href="{{url_for('AboutUs')}}">About</a></li>
+        <li><a href="{{url_for('user.Tournaments_view')}}">Tournaments</a></li>   <!--Completed events and ongoing/upcoming events-->
+        <li><a href="{{url_for('register')}}">Register</a></li>
+        <li><a href="{{url_for('login')}}">Login</a></li>
+        <li><a href="{{url_for('contacts')}}">Contacts</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <section class="main-content">
+    <div class="text-content">
+      <h1>Welcome Vikas</h1>
+      <h2>This is the user_dashboard</h2>
+      <p>Some basic intro on our project. 
+        What do we keep the below button for though?</p>
+      <button onclick="location.href='Big_one/static/a.html'">CLICK HERE!</button>
+    </div>
+    
+    <!-- Image Section (Replace with your image) -->
+    <div class="image-content">
+      <img src="{{ url_for('static', filename='Temp.jpg') }}" alt="Sport Image">
+      <!-- Replace "your-image.jpg" with the path to your own image -->
+    </div>
+  </section>
+
+</body>
+</html>
